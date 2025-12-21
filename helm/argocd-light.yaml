@@ -1,0 +1,45 @@
+# argocd-light.yaml
+global:
+  domain: argocd.local
+
+# Redis. Disable HA to save resources.
+redis-ha:
+  enabled: false
+
+controller:
+  replicas: 1
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+server:
+  replicas: 1
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+repoServer:
+  replicas: 1
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+
+applicationSet:
+  replicas: 1
+
+dex:
+  enabled: true
+  resources:
+    limits:
+      memory: 128Mi
+    requests:
+      memory: 32Mi

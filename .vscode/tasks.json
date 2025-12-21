@@ -1,0 +1,46 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run_tofu",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/terraform/ && set -a && source ${workspaceFolder}/.env && set +a && tofu ${input:tofu_cmd}",
+        },
+        {
+            "label": "talos_init",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/bootstrap_cluster/ && chmod +x talos_init.sh && set -a && source ${workspaceFolder}/.env && set +a && ./talos_init.sh ${input:ipaddress}",
+        },
+        {
+            "label": "kubectl_init",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/bootstrap_cluster/ && chmod +x kubectl_init.sh && set -a && source ${workspaceFolder}/.env && set +a && ./kubectl_init.sh ${input:ipaddress}",
+        },
+        {
+            "label": "install_argo",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/helm/ && chmod +x install_argo.sh && ./install_argo.sh",
+        }
+    ],
+    "inputs": [
+        {
+            "id": "tofu_cmd",
+            "type": "pickString",
+            "description": "tofu command",
+            "options": [
+                "init",
+                "plan",
+                "apply",
+                "output",
+                "state list",
+            ]
+        },
+        {
+            "id": "ipaddress",
+            "type": "promptString",
+            "description": "ip of proxmox vm"
+        }
+    ]
+}

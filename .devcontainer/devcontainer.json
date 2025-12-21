@@ -1,0 +1,17 @@
+{
+  "name": "Talos IaC Proxmox",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+
+  "initializeCommand": "chmod +x ./.devcontainer/initialize.sh && ./.devcontainer/initialize.sh",
+  "onCreateCommand": "chmod +x ./.devcontainer/on_create.sh && ./.devcontainer/on_create.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "HashiCorp.terraform",
+        "GitHub.copilot",
+        "actboy168.tasks"
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.DS_Store
+.env
+reset.sh
+talosconfig
+controlplane.yaml
+worker.yaml
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+*.log
