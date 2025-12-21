@@ -54,3 +54,10 @@ VS Code tasks are preconfigured in [.vscode/tasks.json](.vscode/tasks.json) to w
 7. Execute the kubectl_init task against the same IP to retrieve and validate Kubernetes credentials.
 8. Run install_argo to deploy Argo CD using the Helm values in this repository.
 
+### Devcontainer Recreation
+
+After rebuilding the dev container, rerun kubectl_init to regenerate the kubeconfig, then export it:
+
+```
+./kubectl_init.sh <control-plane-ip>
+```
