@@ -37,7 +37,7 @@ applicationSet:
   replicas: 1
 
 dex:
-  enabled: true
+  enabled: false
   resources:
     limits:
       memory: 128Mi

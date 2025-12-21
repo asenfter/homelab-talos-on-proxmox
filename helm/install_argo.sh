@@ -28,7 +28,11 @@ helm upgrade --install argocd argo/argo-cd \
   --wait \
   --timeout 5m
 
-echo "### Step 3: Retrieving admin password..."
+# 3. Bootstrap the ArgoCD Application to manage the rest of the apps
+echo "### Step 3: Bootstrapping ArgoCD Application to manage the rest of the apps..."
+kubectl apply -f bootstrap-app.yaml
+
+echo "### Step 4: Retrieving admin password..."
 # We fetch the password directly from the cluster secret
 ADMIN_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
