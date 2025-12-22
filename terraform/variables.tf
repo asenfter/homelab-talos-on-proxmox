@@ -41,6 +41,11 @@ variable "vm_bridge" {
     default = "vmbr0"
 }
 
+variable "vm_macaddr" {
+    description = "Optional static MAC address for Talos VMs"
+    type = string
+}
+
 variable "enable_agent" {
     description = "Set true when the guest has the QEMU agent installed"
     type = bool

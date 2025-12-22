@@ -17,8 +17,10 @@ resource "proxmox_vm_qemu" "talos" {
 
   # Network
   network {
-    model  = "virtio"
+    model  = "e1000"
     bridge = var.vm_bridge
+    # ensures a static MAC if provided
+    macaddr = var.vm_macaddr
   }
 
   # Primary system disk
