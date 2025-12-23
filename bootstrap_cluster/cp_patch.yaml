@@ -1,0 +1,6 @@
+# cp-patch.yaml
+cluster:
+  allowSchedulingOnControlPlanes: true
+
+machine:
+  nodeLabels: {}

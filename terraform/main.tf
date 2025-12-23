@@ -17,7 +17,7 @@ resource "proxmox_vm_qemu" "talos" {
 
   # Network
   network {
-    model  = "e1000"
+    model  = "virtio"
     bridge = var.vm_bridge
     # ensures a static MAC if provided
     macaddr = var.vm_macaddr

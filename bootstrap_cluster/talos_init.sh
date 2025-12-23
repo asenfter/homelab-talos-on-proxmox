@@ -19,7 +19,7 @@ echo "------------------------------------"
 
 echo "Step 1: Generate configuration..."
 talosctl gen config $CLUSTER_NAME https://$IP_ADDRESS:6443 \
-  --config-patch-control-plane 'cluster: { allowSchedulingOnControlPlanes: true }' \
+  --config-patch-control-plane @cp_patch.yaml \
   --force
 
 echo "Step 2: Apply configuration..."
