@@ -32,7 +32,19 @@ helm upgrade --install argocd argo/argo-cd \
 echo "### Step 3: Bootstrapping ArgoCD Application to manage the rest of the apps..."
 kubectl apply -f bootstrap-app.yaml
 
-echo "### Step 4: Retrieving admin password..."
+echo "### Step 4: Connecting with git repo..."
+kubectl -n argocd create secret generic manifests-repo \
+  --from-literal=url="$ARGOCD_GIT_REPO_URL" \
+  --from-literal=name="$ARGOCD_GIT_REPO_NAME" \
+  --from-literal=username="$ARGOCD_GIT_REPO_USERNAME" \
+  --from-literal=password="$ARGOCD_GIT_REPO_TOKEN" \
+  --dry-run=client -o yaml \
+| kubectl label --local -f - \
+    argocd.argoproj.io/secret-type=repository \
+    --overwrite -o yaml \
+| kubectl apply -f -
+
+echo "### Step 5: Retrieving admin password..."
 # We fetch the password directly from the cluster secret
 ADMIN_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 

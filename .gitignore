@@ -2,6 +2,7 @@
 .env
 reset.sh
 talosconfig
+kubeconfig
 controlplane.yaml
 worker.yaml
 .terraform/

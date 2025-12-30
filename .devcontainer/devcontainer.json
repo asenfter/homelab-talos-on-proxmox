@@ -2,6 +2,12 @@
   "name": "Talos IaC Proxmox",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
 
+  "containerEnv": {
+    "TALOSCLI_VERSION": "latest",
+    "KUBECONFIG": "${containerWorkspaceFolder}/bootstrap_cluster/kubeconfig",
+    "TALOSCONFIG": "${containerWorkspaceFolder}/bootstrap_cluster/talosconfig"
+  },
+
   "initializeCommand": "chmod +x ./.devcontainer/initialize.sh && ./.devcontainer/initialize.sh",
   "onCreateCommand": "chmod +x ./.devcontainer/on_create.sh && ./.devcontainer/on_create.sh",
 
