@@ -2,13 +2,13 @@
 
 set -eu
 
-TALOS_VERSION="${1:-latest}"
+TALOS_VERSION="${TALOSCLI_VERSION:-latest}"
 INSTALLPATH="${INSTALLPATH:-/usr/local/bin}"
 
 if [ "$TALOS_VERSION" = "latest" ]; then
   BASE_URL="https://github.com/siderolabs/talos/releases/latest/download"
 else
-  BASE_URL="https://github.com/siderolabs/talos/releases/download/${TALOS_VERSION}"
+  BASE_URL="https://github.com/siderolabs/talos/releases/download/v${TALOS_VERSION}"
 fi
 
 echo "Talos version: $TALOS_VERSION"

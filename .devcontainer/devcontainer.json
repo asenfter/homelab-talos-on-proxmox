@@ -2,14 +2,17 @@
   "name": "Talos IaC Proxmox",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
 
+  "onCreateCommand": "chmod +x ./.devcontainer/on_create.sh && ./.devcontainer/on_create.sh",
+
   "containerEnv": {
-    "TALOSCLI_VERSION": "latest",
+    "TALOSCLI_VERSION": "1.12.0",
     "KUBECONFIG": "${containerWorkspaceFolder}/bootstrap_cluster/kubeconfig",
-    "TALOSCONFIG": "${containerWorkspaceFolder}/bootstrap_cluster/talosconfig"
+    "TALOSCONFIG": "${containerWorkspaceFolder}/bootstrap_cluster/talosconfig",
   },
 
-  "initializeCommand": "chmod +x ./.devcontainer/initialize.sh && ./.devcontainer/initialize.sh",
-  "onCreateCommand": "chmod +x ./.devcontainer/on_create.sh && ./.devcontainer/on_create.sh",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+  ],
 
   "customizations": {
     "vscode": {
