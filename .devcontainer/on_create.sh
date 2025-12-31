@@ -28,18 +28,6 @@ echo "======== Installing helm... ========"
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 helm version
 # ----------------------------------------------------------------
-# Install kubeseal
-echo "======== Installing kubeseal... ========"
-KUBESEAL_VERSION=$(curl -s https://api.github.com/repos/bitnami-labs/sealed-secrets/tags | jq -r '.[0].name' | cut -c 2-)
-if [ -z "$KUBESEAL_VERSION" ]; then
-    echo "Failed to fetch the latest KUBESEAL_VERSION"
-    exit 1
-fi
-curl -OL "https://github.com/bitnami-labs/sealed-secrets/releases/download/v${KUBESEAL_VERSION}/kubeseal-${KUBESEAL_VERSION}-linux-amd64.tar.gz"
-tar -xvzf kubeseal-${KUBESEAL_VERSION}-linux-amd64.tar.gz kubeseal
-sudo install -m 755 kubeseal /usr/local/bin/kubeseal
-rm -f kubeseal-${KUBESEAL_VERSION}-linux-amd64.tar.gz kubeseal
-# ----------------------------------------------------------------
 # Install OpenTofu CLI
 echo "======== Installing opentofu... ========"
 curl --proto '=https' --tlsv1.2 -fsSL https://get.opentofu.org/install-opentofu.sh -o install-opentofu.sh
